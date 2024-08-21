@@ -1,0 +1,18 @@
+State vs Props
+
+State
+-> internal data, owned by component
+-> Component "memory"
+-> can be updated by the component itself
+-> updating state causes component to re-render
+-> used to make components interactive
+
+
+Props
+-> external data, owned by parent component
+-> similar to function parameters
+-> read-only
+-> receiving new props causes component to re-render, usually when the parent's state has been updated
+-> used by parent to configure child component ("settings")
+
+* Upvotes example of state and props both!

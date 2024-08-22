@@ -1,4 +1,4 @@
-State vs Props
+::: State vs Props :::
 
 State
 -> internal data, owned by component
@@ -16,3 +16,81 @@ Props
 -> used by parent to configure child component ("settings")
 
 * Upvotes example of state and props both!
+
+
+::: Thinking in React :::
+
+-> "react mindset"
+-> thinking about components, state, data flow, effects, etc.
+-> thinking in state transitions, not element mutations
+
+The Process:
+    1. Break desired UI into components and establish the component tree (reusability, composability)
+    2. Build a static version in React (without state)
+    3. Think about state
+        i. When to use state
+        ii. Types of state: local vs global
+        iii. Where to place each piece of state
+    4. Establish data flow
+        i. One way data flow
+        ii. Child to parent communication
+        iii. Accessing global state
+    THESE ARE BOTH STATE MANAGEMENT
+
+When you think in react, you can answer:
+-> how to break up a UI design into components
+-> how to make some components reusable
+-> how to assemble UI from reusable components
+-> what pieces of state do i need for interactivity
+-> where to place state (what component should own each piece of state)
+-> what types of states can or should i use
+-> how to make data flow through an app
+
+::: What is State Management :::
+
+State management: deciding when to create pieces of state, what types of state are necessary, where to place each piece of state, and how data flows through the app
+-> Giving each piece of state a home
+
+Types of State:
+
+Global 
+-state that many components might need
+-shared state that is accessible to every component in the entire application
+-"shared state"
+-define using react context api or an external global state management library like Redux
+-(i.e. shopping cart in udemy site)
+
+Local 
+-state needed only by one or few components
+-state that is defined in a component and only that component and child components have access to it (by passing props)
+-(i.e. input text in search bar in udemy site)
+
+
+::: State: when and where :::
+
+Need to store data -> will this data change at some point? 
+    No = regular const variable
+    Yes = Can be computed from existing state/props?
+        Yes = derive state
+        No = Should it re-render component?
+            No = Ref (useRef)
+            Yes = Place new piece of state in component
+                Only used by this component?
+                    Yes = leave in component
+                    No -> Also used by child component? Pass to child via props
+This is too much.
+
+
+::: Problem Sharing state with sibling component :::
+
+-> Data can only flow down to children (via props), not sideways to siblings
+-> So, lift up state!
+-> Passing down a setter function is child to parent (inverse data flow) -> trick that allows us to do this.
+
+Controlled element = value defined by state and event handler?
+
+
+::: Derived State :::
+
+-> State that is computed from another existing piece of state or props
+-multiple state that is unneeded causes unneeded re-renders
